@@ -12,7 +12,7 @@ module SendgridToolkit
     protected
 
     def api_post(module_name, action_name, opts = {})
-      logger.debug "https://#{BASE_URI}/#{module_name}.#{action_name}.json?"
+      #logger.debug "https://#{BASE_URI}/#{module_name}.#{action_name}.json?"
       response = HTTParty.post("https://#{BASE_URI}/#{module_name}.#{action_name}.json?", :query => get_credentials.merge(opts), :format => :json)
       if response.code > 401
         raise(SendgridToolkit::SendgridServerError, "The Sendgrid server returned an error. #{response.inspect}")
@@ -28,7 +28,7 @@ module SendgridToolkit
     end
 
     def apiv2_post(module_name, action_name, opts = {})
-      logger "POST https://#{BASE_URI_V2}/#{module_name}.#{action_name}.json?"
+      #logger "POST https://#{BASE_URI_V2}/#{module_name}.#{action_name}.json?"
       response = HTTParty.get("https://#{BASE_URI_V2}/#{module_name}.#{action_name}.json?", :query => get_credentials.merge(opts), :format => :json)
       if response.code > 401
         raise(SendgridToolkit::SendgridServerError, "The Sendgrid server returned an error. #{response.inspect}")
